@@ -7,13 +7,13 @@ public class UserDto implements Serializable {
 	private static final long serialVersionUID = 2872358563615601300L;
 	private long id;		
 	private String userId;
-	private String firstname;
-	private String lastname;
+	private String firstName;
+	private String lastName;
 	private String email;
 	private String password;
 	private String encryptedPassword;
 	private String emailVerificationToken;
-	private Boolean emailVerificationStatus;
+	private Boolean emailVerificationStatus = false;
 
 	public long getId() {
 		return id;
@@ -27,17 +27,17 @@ public class UserDto implements Serializable {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public String getEmail() {
 		return email;
