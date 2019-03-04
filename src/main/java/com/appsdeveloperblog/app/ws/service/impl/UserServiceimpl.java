@@ -1,6 +1,7 @@
 package com.appsdeveloperblog.app.ws.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,7 @@ public class UserServiceImpl implements UserService {
 		UserDto returnValue = new UserDto();
 		UserEntity userEntity = userRepository.findByUserId(userId);
 		
-		if(userEntity == null) throw new UsernameNotFoundException(userId);
+		if(userEntity == null) throw new UsernameNotFoundException("User with ID:" + userId+ " not found");
 		
 		BeanUtils.copyProperties(userEntity, returnValue);
 		
@@ -97,6 +98,24 @@ public class UserServiceImpl implements UserService {
 		UserEntity updatedUserDetails = userRepository.save(userEntity);
 		
 		BeanUtils.copyProperties(updatedUserDetails, returnValue);
+		
+		return returnValue;
+	}
+
+	@Override
+	public void deleteUser(String userId) {
+		UserEntity userEntity = userRepository.findByUserId(userId);
+		
+		if(userEntity == null) 
+			throw new UserServiceException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
+		
+		userRepository.delete(userEntity);
+		
+	}
+
+	@Override
+	public List<UserDto> getUsers(int page, int limit) {
+		List<UserDto> returnValue = new ArrayList<>();
 		
 		return returnValue;
 	}
